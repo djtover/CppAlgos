@@ -13,14 +13,13 @@ int main()
 // int * itr = Add_n(v.begin(), v.end(), st);
 
 
-int ia[] = {};
-cout<< end(ia);
-// int * p = Add_n(begin(ia), end(ia), 2);
-cout<<p<<"=pointer"<<endl;
+int ia[] = {1,2,3,4,5,6,7,8,9,10};
+int * p = Transpose(begin(ia), end(ia));
+cout<<*p<<"=pointer"<<endl;
+cout<<*end(ia)<<endl;
 
-
-// for(int i=0; i<2;i++){
-//   cout<<ia[i]<<endl;
-// }
+for(int i=0; i<10;i++){
+  cout<<ia[i]<<endl;
+}
   return 0;
 }

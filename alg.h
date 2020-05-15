@@ -23,3 +23,26 @@ T Add_n( T b,  T e, size_t n)
     auto itr = b+count;
    return itr;
 }
+
+template<typename T>
+T Transpose(T b, T e ){
+  if(b==e){
+    return e;
+  }
+  auto beg = b;
+  int size =0;
+
+  while(beg!=e){
+    beg++;
+    size++;
+  }
+  for(int i =0; i<size/2; i++){
+    auto first = b + 2*i;
+    auto second = b + 2*i+1;
+    beg = second + 1;
+    std::iter_swap(first,second);
+  }
+
+  // cout<<size<<endl;
+  return beg;
+}
