@@ -3,23 +3,22 @@
 #include <iostream>
 using namespace std;
 template<typename T>
-T Add_n( T b,  T e, size_t n)
+T Add_n( T b,  T e, const size_t n)
 {
   if(b==e){
     return e;
   }
    int sum = 0;
    int count = 0;
-     for(auto i = b; i<e; i+=n){
-      for(auto j = i; j<e && j<i+n; j++){
+     for(T i = b; i<e; i+=n){
+      for(T j = i; j<e && j<i+n; j++){
         sum+=*j;
       }
-      auto it = b+count;
+      T it = b+count;
       *it = sum;
       count++;
       sum=0;
      }
-     // cout<<"count="<< count<<endl;
     auto itr = b+count;
    return itr;
 }
@@ -29,13 +28,9 @@ T Transpose(T b, T e ){
   if(b==e){
     return e;
   }
-  auto beg = b;
-  int size =0;
+  T beg = b;
+  int size = std::distance(b,e);
 
-  while(beg!=e){
-    beg++;
-    size++;
-  }
   for(int i =0; i<size/2; i++){
     auto first = b + 2*i;
     auto second = b + 2*i+1;
@@ -43,6 +38,24 @@ T Transpose(T b, T e ){
     std::iter_swap(first,second);
   }
 
-  // cout<<size<<endl;
   return beg;
+}
+
+
+template<class I, class O, class Oper>
+O Transform(I b, I e, O o,
+                   Oper f)
+{
+
+
+if(b==e || std::distance(b,e)%2!=0){
+  return o;
+}
+
+
+  for(I itrB = b; itrB!=e; itrB+=2 ){
+      *o++ = f(*(itrB), *(itrB+1));
+
+  }
+    return o;
 }
